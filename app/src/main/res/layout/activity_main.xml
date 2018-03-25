@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.user.myapplication.MainActivity">
+
+    <TextView
+        android:id="@+id/txtSex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Sex"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spnSex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/sex_list"
+        android:spinnerMode="dialog" />
+
+    <TextView
+        android:id="@+id/txtAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Age"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/radGrpAge"
+        android:layout_width="match_parent"
+        android:layout_height="141dp">
+
+        <RadioButton
+            android:id="@+id/radBtnAgeRange1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/maleAgeRange1" />
+
+        <RadioButton
+            android:id="@+id/radBtnAgeRange2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/maleAgeRange2" />
+
+        <RadioButton
+            android:id="@+id/radBtnAgeRange3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/maleAgeRange3" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/FamilyNumber"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtNumFamily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Number"
+        android:textSize="18sp" />
+
+    <NumberPicker
+        android:id="@+id/numPkrFamply"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/button"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtSug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/advice"
+        android:textSize="18sp" />
+</LinearLayout>
