@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">作業四之二：陳哲葦</string>
+    <string name="Game">和電腦猜拳</string>
+    <string name="personal">玩家出拳：</string>
+    <string name="Computer">電腦出拳：</string>
+    <string name="Scissors">剪刀</string>
+    <string name="Stone">石頭</string>
+    <string name="Paper">布</string>
+    <string name="result">判定輸贏：</string>
+</resources>
