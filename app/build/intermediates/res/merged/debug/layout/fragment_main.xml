@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_title"
+        android:textSize="40sp"
+        android:textColor="#FF00FF"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
+
+    <TextView android:id="@+id/txtCom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_com_play"
+        android:layout_below="@id/txtTitle"
+        android:layout_alignLeft="@id/txtTitle"
+        android:textSize="20sp" />
+
+    <TextView android:id="@+id/txtMyPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_my_play"
+        android:layout_below="@id/txtTitle"
+        android:layout_alignRight="@id/txtTitle"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnShowResult1"
+        android:layout_alignEnd="@+id/btnHiddenResult"
+        android:layout_alignRight="@+id/btnHiddenResult"
+        android:layout_marginBottom="33dp"
+        android:text="@string/result"
+        android:textColor="#0000FF"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnShowResult1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnHiddenResult"
+        android:layout_alignLeft="@+id/imageViewDice"
+        android:layout_alignStart="@+id/imageViewDice"
+        android:text="@string/btn_show_result1"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnShowResult2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnHiddenResult"
+        android:layout_alignLeft="@+id/button_dice"
+        android:layout_alignStart="@+id/button_dice"
+        android:text="@string/btn_show_result2"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnHiddenResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtMyPlay"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtMyPlay"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:text="@string/btn_hidden_result"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/button_dice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtMyPlay"
+        android:layout_alignStart="@+id/txtMyPlay"
+        android:layout_below="@+id/txtMyPlay"
+        android:layout_marginTop="46dp"
+        app:srcCompat="@drawable/dice01" />
+
+    <ImageView
+        android:id="@+id/imageViewDice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_dice"
+        android:layout_alignLeft="@+id/txtCom"
+        android:layout_alignStart="@+id/txtCom"
+        app:srcCompat="@drawable/dice02" />
+
+</RelativeLayout>
