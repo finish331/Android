@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">作業七：陳哲葦</string>
+    <string name="Start">開始遊戲</string>
+    <string name="Result">顯示結果</string>
+    <string name="AllGame">全部局數：</string>
+    <string name="playWin">玩家贏：</string>
+    <string name="comWin">電腦贏：</string>
+    <string name="draw">平手：</string>
+    <string name="back">返回遊戲畫面</string>
+</resources>
