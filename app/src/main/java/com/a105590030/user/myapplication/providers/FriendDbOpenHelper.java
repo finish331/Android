@@ -1,16 +1,13 @@
-package com.a105590030.user.myapplication;
+package com.a105590030.user.myapplication.providers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by User on 2018/5/27.
- */
+public class FriendDbOpenHelper extends SQLiteOpenHelper {
 
-public class PhoneStore extends SQLiteOpenHelper{
-    public PhoneStore(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context,name,factory,version);
+    public FriendDbOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
 
     @Override

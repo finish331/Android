@@ -1,5 +1,6 @@
 package com.a105590030.user.myapplication;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,13 +22,14 @@ import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.a105590030.user.myapplication.providers.FriendDbOpenHelper;
+import com.a105590030.user.myapplication.providers.FriendsContentProvider;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MENU_ADD = Menu.FIRST;
-    private static final String DB_FILE = "phone.db",
-            DB_TABLE = "phone";
-    private SQLiteDatabase phoneDb;
+    private static ContentResolver mContRes;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
@@ -40,23 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PhoneStore phoneStore = new PhoneStore(MainActivity.this,DB_FILE,null,1);
-        phoneDb = phoneStore.getWritableDatabase();
-
-        Cursor cursor = phoneDb.rawQuery(
-                "select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
-                        DB_TABLE + "'", null);
-
-        if(cursor != null) {
-            if(cursor.getCount() == 0)	// 沒有資料表，要建立一個資料表。
-                phoneDb.execSQL("CREATE TABLE " + DB_TABLE + " (" +
-                        "_id INTEGER PRIMARY KEY," +
-                        "name TEXT NOT NULL," +
-                        "sex TEXT," +
-                        "address TEXT);");
-
-            cursor.close();
-        }
+        mContRes = getContentResolver();
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -67,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager);
 
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        phoneDb.close();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,20 +66,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onQueryTextSubmit(String query) {
             String temp;
-            Cursor c = phoneDb.query(true, DB_TABLE, new String[]{"name", "sex",
-                    "address"}, "name=" + "\"" + query
-                    + "\"", null, null, null, null, null);
+            String[] projection = new String[]{"name", "sex", "address"};
+            Cursor c = mContRes.query(FriendsContentProvider.CONTENT_URI, projection, "name="+"\""+query+"\"", null, null);
             if (c == null) {
                 Toast.makeText(MainActivity.this, "請輸入搜尋資料", Toast.LENGTH_LONG).show();
                 return false;
             }
-
             if (c.getCount() == 0) {
                 Toast.makeText(MainActivity.this, "沒有這筆資料", Toast.LENGTH_LONG)
                         .show();
             } else {
                 c.moveToFirst();
-                temp = (c.getString(0) + "        " + c.getString(1)  + "        " + c.getString(2)) + "     is find";
+                temp = (c.getString(0) + "        " + c.getString(1)  + "        " + c.getString(2)) + "  is find";
                 Toast.makeText(MainActivity.this,temp,Toast.LENGTH_LONG).show();
             }
             return true;
@@ -112,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.menuItemAdd:
+                String[] projection = new String[]{"name", "sex", "address"};
                 name=((add_new_contact) getSupportFragmentManager().getFragments().get(0)).name.getText().toString();
                 phone=((add_new_contact) getSupportFragmentManager().getFragments().get(0)).phone.getText().toString();
                 type=((add_new_contact) getSupportFragmentManager().getFragments().get(0)).storeType;
@@ -121,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
                 newRow.put("name", name);
                 newRow.put("sex",phone);
                 newRow.put("address", type);
-                phoneDb.insert(DB_TABLE, null, newRow);
+                mContRes.insert(FriendsContentProvider.CONTENT_URI, newRow);
 
-                Cursor c = phoneDb.query(true, DB_TABLE, new String[]{"name", "sex",
-                        "address"}, 	null, null, null, null, null, null);
-
+                Cursor c = mContRes.query(FriendsContentProvider.CONTENT_URI, projection,
+                        null, null, null);
+                allPhone.clear();
                 if (c == null)
                     return false;
 
@@ -134,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 }
                 else {
-                    Toast.makeText(MainActivity.this,"1122",Toast.LENGTH_LONG).show();
                     c.moveToFirst();
                     while (c.moveToNext()) {
                         allPhone.add( c.getString(0) + "        " + c.getString(1)  + "        " +
